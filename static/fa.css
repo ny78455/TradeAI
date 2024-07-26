@@ -1,0 +1,479 @@
+/* Reset and base styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #121212; /* Dark background color */
+    color: #ffffff; /* White text color */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #121212 !important; /* Ensure navbar background is dark */
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff !important;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-left: 20px;  /* Add some padding for better click area */
+}
+
+.nav-link:hover {
+    background-color: #333333; /* Darken on hover */
+}
+
+.dropdown-menu {
+    background-color: #333333;
+    border: none;
+    border-radius: 10px;
+}
+.dropdown-menu .dropdown-item {
+    color: #ddd;
+    padding: 10px 20px;
+}
+.dropdown-menu .dropdown-item:hover {
+    background-color: #444444;
+    color: #fff;
+}
+
+.navbar .user-info {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Header styles */
+header {
+    background-color: #121212;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-left: 350px;
+}
+
+#nav {
+    margin-top: 20px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #3498db;
+    color: white;
+    padding: 26px; /* Increased padding to make the button 20px larger in height and width */
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 180px; /* Adjusted to make the button wider */
+    border-radius: 20px;
+    margin-left: 750px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 20%;
+    border-radius: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+    margin-left: 750px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+    max-height: 500px; /* Adjust as needed */
+    transition: max-height 0.9s ease-in;
+}
+
+
+/* Main content area */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+/* Header styles */
+header {
+    background-color: #121212;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.date {
+    font-size: 14px;
+    color: #888888;
+}
+
+.search-section {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.news-input {
+    padding: 8px;
+    font-size: 16px;
+    background-color: #1e1e1e; /* Dark input background */
+    color: #ffffff;
+    border-radius: 4px;
+    border: none;
+}
+
+.search-button,
+.nlp-button {
+    padding: 8px 12px;
+    background-color: #333333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover,
+.nlp-button:hover {
+    background-color: #444444;
+}
+
+/* Advisor, Answer, and Prompt container styles */
+.advisor-container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box; /* Ensure padding and borders are included in width */
+}
+
+.advisor {
+    width: 40%; /* Adjust width as needed */
+    height: 500px;
+    background: url('/static/images/de473548-42a2-490f-bfa1-7af4c5339a5e-removebg.png') center center no-repeat;
+    background-size: cover;
+    margin-right: 20px; /* Space between image and chart */
+}
+
+.chart-container {
+    flex: 1; /* Take remaining space */
+    height: 500px; /* Match height of advisor image */
+}
+
+.financial-advisors-section {
+    flex: 1;
+    width: 100%;
+    max-width: 600px;
+    margin-left: 40px; /* Space between chart and financial advisors section */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.financial-advisors-section h2 {
+    color: #ffffff;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.advisors-list {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px; /* Space for scrollbar */
+}
+
+.advisor-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #1e1e1e;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.advisor-item:hover {
+    background-color: #333333;
+}
+
+.advisor-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.advisor-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.advisor-name {
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.contact-button {
+    padding: 8px 12px;
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+    background-color: #444444;
+}
+
+.stars {
+    color: gold;
+    margin-right: 5px;
+}
+
+.answer-container {
+    text-align: left;
+    width: 100%; /* Full width */
+    max-width: 1200px; /* Adjust width for the answer container */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    margin-bottom: 20px; /* Add margin below the answer container */
+}
+
+.answer {
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.prompt-container {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center the prompt container */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.prompt-input {
+    padding: 10px;
+    font-size: 18px;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 400px;
+    margin-right: 10px;
+}
+
+.submit-button {
+    padding: 12px 20px;
+    background-color: #333333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #444444;
+}
+
+footer{
+    background-color: #121212;
+    margin-top: 5em;
+}
+
+.joinSection,.footerlinksContainer{
+    width: 100%;
+    max-width: 1500px;
+    margin: auto;
+    padding: 1em;
+}
+
+.joinSection{
+    display: flex;
+    align-items: center;
+    padding: 3em 0em;
+}
+
+.joinSection .joinDesc{
+    width: 80%;
+}
+
+.joinSection button{
+    height: auto;
+}
+
+
+
+.footerlinksContainer{
+    width: 100%;
+    max-width: 1500px;
+    margin: auto;
+    padding: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    justify-content: space-between;
+    padding-top: 5em;
+    border-top: 1px solid #1e1e1e;
+}
+
+.footersociallinkContainer{
+    margin-top: 1em;
+}
+
+.footerAboutus .sociallinkContainer{
+    justify-content: flex-start;
+}
+
+.footerlink{
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+}
+
+.linkTitle{
+    font-size: 1.5rem;
+    margin-bottom: .5em;
+}
+
+.footerlink a{
+    color: #ffffff;
+    margin-bottom: 1em;
+    transition: all .5s ease-in-out;
+}
+
+.footerlink a:hover{
+    transform: translateX(10px);
+}
+
+.footerCopyright{
+    background-color: #121212;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.footerCopyright p{
+    text-align: center;
+}
+
+.developedBy{
+    font-weight: bold;
+    color: #ffffff;
+}
+
+@media screen and (min-width:700px) {
+    .footerlinksContainer{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+    }
+
+    .nav-link {
+        padding: 8px;
+    }
+
+    .prompt-input {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .advisor-container {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: center; /* Center items horizontally on smaller screens */
+    }
+
+    .advisor {
+        width: 100%; /* Full width on smaller screens */
+        margin-right: 0; /* Remove margin */
+        margin-bottom: 20px; /* Add space between image and chart on smaller screens */
+    }
+
+    .chart-container {
+        width: 100%; /* Full width on smaller screens */
+        height: 300px; /* Adjust height on smaller screens */
+    }
+
+    .financial-advisors-section {
+        width: 100%; /* Full width on smaller screens */
+        margin-left: 0; /* Remove margin */
+    }
+}

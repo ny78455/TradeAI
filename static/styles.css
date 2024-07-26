@@ -1,0 +1,375 @@
+/* Reset and base styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #121212; /* Dark background color */
+    color: #ffffff; /* White text color */
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #121212 !important; /* Ensure navbar background is dark */
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff !important;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-left: 20px; /* Add some padding for better click area */
+}
+
+.nav-link:hover {
+    background-color: #333333; /* Darken on hover */
+}
+
+.dropdown-menu {
+    background-color: #333333;
+    border: none;
+    border-radius: 10px;
+}
+
+.dropdown-menu .dropdown-item {
+    color: #ddd;
+    padding: 10px 20px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #444444;
+    color: #fff;
+}
+
+.navbar .user-info {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Header styles */
+header {
+    background-color: #121212;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-left: 350px;
+}
+
+#nav {
+    margin-top: 20px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #3498db;
+    color: white;
+    padding: 26px; /* Increased padding to make the button 20px larger in height and width */
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 180px; /* Adjusted to make the button wider */
+    border-radius: 60px;
+    margin-left: 750px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 20%;
+    border-radius: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+    margin-left: 750px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+    max-height: 500px; /* Adjust as needed */
+    transition: max-height 0.9s ease-in;
+}
+
+/* Main content area */
+.main-content {
+    background-color:#121212;
+    padding: 20px;
+    height: 100vh; /* Full height of viewport */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+/* Dashboard components */
+.dashboard .chart-container {
+    background-color: #121212; /* Dark chart container background */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.dashboard .chart-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.dashboard .chart-header .timeframes button {
+    background-color: #333333; /* Dark button background */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.dashboard .title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.dashboard .date {
+    font-size: 14px;
+    color: #888888; /* Lighter text color */
+}
+
+.dashboard .chart-header .timeframes button:hover,
+.dashboard .chart-header .indicators button:hover {
+    background-color: #444444; /* Darken on hover */
+}
+
+.dashboard .chart-header .timeframes button:focus,
+.dashboard .chart-header .indicators button:focus,
+.nav-link:focus,
+.logout:focus,
+.dashboard .tracking .track-item button:focus,
+.dashboard .chart-header .timeframes button:active,
+.dashboard .chart-header .indicators button:active,
+.nav-link:active,
+.logout:active,
+.dashboard .tracking .track-item button:active {
+    outline: none;
+    box-shadow: none;
+    background-color: #333333; /* Black background on focus */
+}
+
+.dashboard .tracking {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard .tracking .track-item {
+    background-color: #333333; /* Dark tracking item background */
+    padding: 20px;
+    border-radius: 10px;
+    width: calc(33.33% - 10px); /* 33.33% width with gap compensation */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard .tracking .track-item select,
+.dashboard .tracking .track-item input[type="text"] {
+    background-color: #1e1e1e; /* Dark input background */
+    color: #ffffff; /* White text color */
+    border: none;
+    padding: 5px; /* Reduced padding for smaller input */
+    width: calc(70% - 10px); /* Adjust width of input */
+    border-radius: 5px;
+    margin-right: 10px; /* Spacing between input and button */
+}
+
+.dashboard .tracking .track-item button {
+    background-color: #333333; /* Dark button background */
+    color: white;
+    border: none;
+    padding: 5px 10px; /* Reduced padding for smaller button */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.dashboard .tracking .track-item button:hover {
+    background-color: #444444; /* Darken on hover */
+}
+
+.dashboard .tracking .track-item button:focus,
+.dashboard .tracking .track-item button:active {
+    outline: none;
+    box-shadow: none;
+    background-color: #333333; /* Black background on focus */
+}
+
+/* Dropdown styles */
+.dashboard .dropdown {
+    background-color: #333333;
+    border-radius: 10px;
+}
+
+.dashboard .dropdown button {
+    background-color: #333333;
+    border: none;
+}
+
+.dashboard-container {
+    display: flex;
+}
+
+.graph-container {
+    flex: 1;
+    height: 100%;
+}
+
+.update-plot-section {
+    margin-left: 20px;
+}
+
+.dashboard .dropdown button:hover {
+    background-color: #444444;
+}
+
+.dashboard .dropdown button:focus,
+.dashboard .dropdown button:active {
+    outline: none;
+    box-shadow: none;
+    background-color: #333333; /* Black background on focus */
+}
+
+footer{
+    background-color: #121212;
+    margin-top: 5em;
+
+}
+
+.joinSection,.footerlinksContainer{
+    width: 100%;
+    max-width: 1500px;
+    margin: auto;
+    padding: 1em;
+}
+
+.joinSection{
+    display: flex;
+    align-items: center;
+    padding: 3em 0em;
+}
+
+.joinSection .joinDesc{
+    width: 80%;
+}
+
+.joinSection button{
+    height: auto;
+}
+
+
+
+.footerlinksContainer{
+    width: 100%;
+    max-width: 1500px;
+    margin: auto;
+    padding: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    justify-content: space-between;
+    padding-top: 5em;
+    border-top: 1px solid #1e1e1e;
+}
+
+.footersociallinkContainer{
+    margin-top: 1em;
+}
+
+.footerAboutus .sociallinkContainer{
+    justify-content: flex-start;
+}
+
+.footerlink{
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+}
+
+.linkTitle{
+    font-size: 1.5rem;
+    margin-bottom: .5em;
+}
+
+.footerlink a{
+    color: #ffffff;
+    margin-bottom: 1em;
+    transition: all .5s ease-in-out;
+}
+
+.footerlink a:hover{
+    transform: translateX(10px);
+}
+
+.footerCopyright{
+    background-color: #121212;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.footerCopyright p{
+    text-align: center;
+}
+
+.developedBy{
+    font-weight: bold;
+    color: #ffffff;
+}
+
+@media screen and (min-width:1200px) {
+    .footerlinksContainer{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+#backtestReportBtn {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+#toggleTaskBtn{
+    border-radius: 40px;
+}
+
+#generated-graph {
+    width: 100%;
+    height: 100%;
+}

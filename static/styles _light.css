@@ -1,0 +1,195 @@
+/* Reset and base styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Light grey background for a softer look */
+    color: #212529; /* Dark text color */
+}
+
+/* Navbar styles */
+.navbar {
+    background: linear-gradient(90deg, #ffffff 0%, #e0e0e0 100%) !important; /* Gradient background */
+    border-bottom: 1px solid #dcdcdc; /* Slightly darker border */
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #212529 !important;
+}
+
+.nav-link {
+    color: #212529 !important;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+    border-radius: 10px;
+}
+
+.nav-link:hover {
+    background-color: #dcdcdc; /* Lighten on hover */
+    color: #0056b3 !important; /* Blue text on hover */
+}
+
+.navbar .user-info {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Main content area */
+.main-content {
+    padding: 20px;
+    height: 100vh; /* Full height of viewport */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+/* Dashboard components */
+.dashboard .chart-container {
+    background-color: #ffffff; /* White chart container background */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard .chart-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.dashboard .chart-header .timeframes button {
+    background: linear-gradient(90deg, #007bff 0%, #0056b3 100%); /* Gradient background */
+    color: #ffffff; /* White text color */
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.dashboard .title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.dashboard .date {
+    font-size: 14px;
+    color: #6c757d; /* Lighter text color */
+}
+
+.dashboard .chart-header .timeframes button:hover,
+.dashboard .chart-header .indicators button:hover {
+    background: linear-gradient(90deg, #0056b3 0%, #004085 100%); /* Darken gradient on hover */
+}
+
+.dashboard .chart-header .timeframes button:focus,
+.dashboard .chart-header .indicators button:focus,
+.nav-link:focus,
+.logout:focus,
+.dashboard .tracking .track-item button:focus,
+.dashboard .chart-header .timeframes button:active,
+.dashboard .chart-header .indicators button:active,
+.nav-link:active,
+.logout:active,
+.dashboard .tracking .track-item button:active {
+    outline: none;
+    box-shadow: none;
+    background: linear-gradient(90deg, #0056b3 0%, #004085 100%); /* Dark gradient on focus */
+}
+
+.dashboard .tracking {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard .tracking .track-item {
+    background: linear-gradient(90deg, #e0e0e0 0%, #f8f9fa 100%); /* Gradient background */
+    padding: 20px;
+    border-radius: 10px;
+    width: calc(33.33% - 10px); /* 33.33% width with gap compensation */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard .tracking .track-item input[type="text"] {
+    background-color: #ffffff; /* White input background */
+    color: #212529; /* Dark text color */
+    border: 1px solid #ced4da;
+    padding: 10px;
+    width: calc(70% - 10px); /* Adjust width of input */
+    border-radius: 5px;
+    margin-right: 10px; /* Spacing between input and button */
+}
+
+.dashboard .tracking .track-item button {
+    background: linear-gradient(90deg, #17a2b8 0%, #138496 100%); /* Gradient background */
+    color: #ffffff; /* White text color */
+    border: none;
+    padding: 10px 15px; /* Increased padding for better touch area */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.dashboard .tracking .track-item button:hover {
+    background: linear-gradient(90deg, #138496 0%, #0d6b8b 100%); /* Darken gradient on hover */
+}
+
+.dashboard .tracking .track-item button:focus,
+.dashboard .tracking .track-item button:active {
+    outline: none;
+    box-shadow: none;
+    background: linear-gradient(90deg, #138496 0%, #0d6b8b 100%); /* Dark gradient on focus */
+}
+
+/* Dropdown styles */
+.dashboard .dropdown {
+    background: linear-gradient(90deg, #e0e0e0 0%, #f8f9fa 100%); /* Gradient background */
+    border-radius: 10px;
+}
+
+.dashboard .dropdown button {
+    background: linear-gradient(90deg, #007bff 0%, #0056b3 100%); /* Gradient background */
+    color: #ffffff; /* White text color */
+    border: none;
+}
+
+.dashboard-container {
+    display: flex;
+}
+
+.graph-container {
+    flex: 1;
+    height: 100%;
+}
+
+.update-plot-section {
+    margin-left: 20px;
+}
+
+.dashboard .dropdown button:hover {
+    background: linear-gradient(90deg, #0056b3 0%, #004085 100%); /* Darken gradient on hover */
+}
+
+.dashboard .dropdown button:focus,
+.dashboard .dropdown button:active {
+    outline: none;
+    box-shadow: none;
+    background: linear-gradient(90deg, #0056b3 0%, #004085 100%); /* Dark gradient on focus */
+}
+
+#generated-graph {
+    width: 100%;
+    height: 100%;
+}
+

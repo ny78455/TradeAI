@@ -1,0 +1,369 @@
+/* Reset and base styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Dark background color */
+    color: #ffffff; /* White text color */
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #121212 !important; /* Ensure navbar background is dark */
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff !important;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #333333; /* Darker background on hover */
+}
+
+.user-info img {
+    margin-right: 10px;
+}
+
+/* Hero section styles */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 100px;
+    background-color: #1a1a1a;
+}
+
+.headline{
+    color: var(--white);
+    font-size: 3rem;
+    width: 100%;
+}
+
+.cryptoText {
+    color: #f39c12; /* Highlighted text color */
+}
+
+.sub-headline {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.btnContainer .btn {
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn1 {
+    background-color: #f39c12;
+    color: #fff;
+}
+
+.btn2 {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #f39c12;
+}
+
+.sectionPic img {
+    width: 100%;
+    height: auto;
+}
+
+/* Carousel styles */
+.carouselContainer {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px;
+    background-color: #1a1a1a;
+}
+
+.eachCarousel {
+    flex: 0 0 auto;
+    width: 200px;
+    margin-right: 10px;
+    padding: 20px;
+    background-color: #333333;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.eachCarousel img {
+    width: 50px;
+    height: auto;
+}
+
+.carouselDesc h1 {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.carouselPara {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.carouselPrice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.carouselPrice h3 {
+    margin: 0 5px;
+}
+
+.rect {
+    width: 5px;
+    height: 30px;
+    background-color: #f39c12;
+}
+
+.carouselBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.carouselIndicator {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #333333;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.activeIndicator {
+    background-color: #f39c12;
+}
+
+/* Processes section styles */
+.gridSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 100px;
+    background-color: #1a1a1a;
+}
+
+.sectionDesc {
+    flex: 1;
+}
+
+.processessDesc {
+    max-width: 50%;
+}
+
+.sectionHeader {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sectionPara {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.eachProcesses {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.eachProcesses img {
+    width: 50px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.processTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.eachprocessesPara p {
+    margin: 0;
+}
+
+/* Markets section styles */
+.marketDesc {
+    max-width: 50%;
+}
+
+.eachMarket {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.eachMarket img {
+    width: 50px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.marketTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.darkPara {
+    color: #aaaaaa;
+}
+
+/* Dashboard section styles */
+.dashboardDesc {
+    max-width: 50%;
+}
+
+.dashboardPic img {
+    width: 100%;
+    height: auto;
+}
+
+/* Funds section styles */
+.fundSection {
+    padding: 50px 100px;
+    background-color: #1a1a1a;
+}
+
+.fundsContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fund {
+    flex: 1;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.fund img {
+    width: 50px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.fundType {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Newsletter section styles */
+.newsletterDesc {
+    max-width: 50%;
+}
+
+.newsletter {
+    display: flex;
+    margin-top: 20px;
+}
+
+.newsletter input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+}
+
+.newsletter .btn {
+    padding: 10px 20px;
+    border-radius: 0 5px 5px 0;
+}
+
+/* Footer styles */
+footer {
+    background-color: #121212;
+    padding: 50px 100px;
+}
+
+.joinSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.joinDesc {
+    max-width: 50%;
+}
+
+.footerlinksContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footerlink {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.footerlink h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footerlink .eachLink {
+    display: block;
+    color: #aaaaaa;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.footerAboutus img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.darkPara {
+    color: #aaaaaa;
+}
+
+.footersociallinkContainer {
+    display: flex;
+    justify-content: space-between;
+    max-width: 200px;
+}
+
+.sociallink {
+    width: 30px;
+    height: auto;
+}
+
+.footerCopyright {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footerCopyright p {
+    color: #aaaaaa;
+}
+
+.developedBy {
+    color: #f39c12;
+    text-decoration: none;
+}

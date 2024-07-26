@@ -1,0 +1,317 @@
+/* Reset and base styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #121212; /* Darker background color */
+    color: #ffffff; /* White text color */
+    padding: 20px; 
+    margin-left: 20px; /* Adjusted padding */
+}
+
+.navbar {
+    background-color: #121212 !important; /* Ensure navbar background is dark */
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff !important;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-left: 20px;  /* Add some padding for better click area */
+}
+
+.nav-link:hover {
+    background-color: #333333; /* Darken on hover */
+}
+
+.dropdown-menu {
+    background-color: #333333;
+    border: none;
+    border-radius: 10px;
+}
+.dropdown-menu .dropdown-item {
+    color: #ddd;
+    padding: 10px 20px;
+}
+.dropdown-menu .dropdown-item:hover {
+    background-color: #444444;
+    color: #fff;
+}
+
+.navbar .user-info {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Header styles */
+header {
+    background-color: #121212;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-left: 350px;
+}
+
+#nav {
+    margin-top: 20px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #3498db;
+    color: white;
+    padding: 26px; /* Increased padding to make the button 20px larger in height and width */
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 180px; /* Adjusted to make the button wider */
+    border-radius: 20px;
+    margin-left: 750px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 20%;
+    border-radius: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+    margin-left: 750px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+    max-height: 500px; /* Adjust as needed */
+    transition: max-height 0.9s ease-in;
+}
+
+
+/* Main content area */
+.main-content {
+    padding: 20px; /* Adjusted padding */
+    max-width: 1300px; /* Set maximum width */
+    margin: 0 auto; /* Center the content */
+    height: 100vh; /* Full height of viewport */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+/* Table styles */
+table {
+    width: 70%;
+    border-collapse: separate; /* Use separate border model */
+    border-spacing: 0; /* Remove default spacing */
+    margin-top: 20px;
+    background-color: #333333; /* Dark table background */
+    color: #ffffff; /* Table text color */
+    padding: 20px;
+    margin-left: 250px;
+    border-radius: 10px; /* Added border radius to table */
+    overflow: hidden; /* Ensure rounded corners are visible */
+}
+
+th, td {
+    border: 1px solid #444444; /* Darker borders */
+    padding: 12px 16px; /* Increased padding */
+    text-align: left;
+    font-size: 16px; /* Increased font size */
+    font-weight: bold;
+    cursor: pointer; /* Make text bold */
+}
+
+th {
+    background-color: #1e1e1e; /* Darker header background */
+    color: #ffffff; /* Header text color */
+    font-weight: bold;
+    border-top-left-radius: 10px; /* Rounded corners for top-left header */
+    border-top-right-radius: 10px; /* Rounded corners for top-right header */
+}
+
+td:first-child {
+    border-bottom-left-radius: 10px; /* Rounded corners for bottom-left cell */
+}
+
+td:last-child {
+    border-bottom-right-radius: 10px; /* Rounded corners for bottom-right cell */
+}
+
+tr:nth-child(even) {
+    background-color: #2a2a2a; /* Alternate row background color */
+}
+
+/* Graph container */
+.graph-container {
+    width: 70px;
+    height: 70px;
+}
+
+/* Form styles */
+form {
+    margin-top: 20px;
+}
+
+form label {
+    font-size: 16px; /* Increased font size */
+    font-weight: bold; /* Make text bold */
+    color: #121212;
+    margin-right: 85px;
+}
+
+form input[type="text"] {
+    padding: 12px; /* Increased padding */
+    border-radius: 5px;
+    border: 1px solid #444444;
+    background-color: #1e1e1e; /* Dark form input background */
+    color: #ffffff;
+    font-size: 16px; /* Increased font size */
+    font-weight: bold; /* Make text bold */
+}
+
+form button {
+    padding: 12px 24px; /* Increased padding */
+    font-size: 16px; /* Increased font size */
+    font-weight: bold; /* Make text bold */
+    background-color: #333333; /* Example button color */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #444444; /* Darken on hover */
+}
+
+form button:focus,
+form button:active {
+    outline: none;
+    box-shadow: none;
+    background-color: #444444; /* Darker color on focus */
+}
+
+footer{
+    background-color: #121212;
+    margin-top: 5em;
+}
+
+.joinSection,.footerlinksContainer{
+    width: 100%;
+    max-width: 1500px;
+    margin: auto;
+    padding: 1em;
+}
+
+.joinSection{
+    display: flex;
+    align-items: center;
+    padding: 3em 0em;
+}
+
+.joinSection .joinDesc{
+    width: 80%;
+}
+
+.joinSection button{
+    height: auto;
+}
+
+
+
+.footerlinksContainer{
+    width: 100%;
+    max-width: 1500px;
+    margin: auto;
+    padding: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    justify-content: space-between;
+    padding-top: 5em;
+    border-top: 1px solid #1e1e1e;
+}
+
+.footersociallinkContainer{
+    margin-top: 1em;
+}
+
+.footerAboutus .sociallinkContainer{
+    justify-content: flex-start;
+}
+
+.footerlink{
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+}
+
+.linkTitle{
+    font-size: 1.5rem;
+    margin-bottom: .5em;
+}
+
+.footerlink a{
+    color: #ffffff;
+    margin-bottom: 1em;
+    transition: all .5s ease-in-out;
+}
+
+.footerlink a:hover{
+    transform: translateX(10px);
+}
+
+.footerCopyright{
+    background-color: #121212;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.footerCopyright p{
+    text-align: center;
+}
+
+.developedBy{
+    font-weight: bold;
+    color: #ffffff;
+}
+
+@media screen and (min-width:700px) {
+    .footerlinksContainer{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}

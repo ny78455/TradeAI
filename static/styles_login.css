@@ -1,0 +1,103 @@
+/* Reset and base styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Dark background color */
+    color: #ffffff; /* White text color */
+}
+
+/* Logo container styles */
+.logo-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff; /* White text color */
+}
+
+/* Login container styles */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of viewport */
+    padding: 20px;
+    background-color: #121212; /* Dark background color */
+}
+
+.login-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ffffff; /* White text color */
+}
+
+.login-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+}
+
+.login-buttons a,
+.login-buttons button {
+    background-color: #333333; /* Dark button background */
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left; /* Align text to the left */
+    text-decoration: none; /* Remove underline from links */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    display: flex;
+    align-items: center;
+}
+
+.login-buttons a:hover,
+.login-buttons button:hover {
+    background-color: #444444; /* Darken on hover */
+}
+
+.login-buttons a:focus,
+.login-buttons button:focus,
+.login-buttons a:active,
+.login-buttons button:active {
+    outline: none;
+    box-shadow: none;
+    background-color: #333333; /* Black background on focus */
+}
+
+.login-buttons img {
+    width: 20px; /* Adjust size as needed */
+    height: 20px;
+    margin-right: 10px; /* Space between logo and text */
+}
+
+.login-container p {
+    margin-top: 20px;
+    color: #888888; /* Lighter text color */
+}
+
+.login-container p a {
+    color: #ffffff; /* White text color for links */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Smooth hover transition */
+}
+
+.login-container p a:hover {
+    color: #bbbbbb; /* Lighter on hover */
+}
+
+.login-container p a:focus,
+.login-container p a:active {
+    outline: none;
+    box-shadow: none;
+    color: #888888; /* Lighter color on focus */
+}

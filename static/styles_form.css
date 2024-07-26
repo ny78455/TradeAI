@@ -1,0 +1,146 @@
+/* Reset and base styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Dark background color */
+    color: #ffffff; /* White text color */
+    display: flex;
+    flex-direction: column; /* Ensure vertical stacking */
+    height: 100vh; /* Full height of viewport */
+    overflow: hidden; /* Prevent scrolling on body */
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #121212 !important; /* Ensure navbar background is dark */
+    border-bottom: 1px solid #121212;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff !important;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    border-radius: 10px;
+}
+
+.nav-link:hover {
+    background-color: #333333; /* Darken on hover */
+}
+
+.navbar .user-info {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Main content area */
+.main-content {
+    flex-grow: 1; /* Allow main content to grow and fill remaining space */
+    padding: 20px;
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    box-sizing: border-box; /* Include padding in width and height */
+    display: flex; /* Flexbox for vertical alignment */
+    flex-direction: column; /* Column direction */
+    align-items: center; /* Center content horizontally */
+    margin-top: 0; /* Reset margin-top */
+}
+
+/* Add a wrapper to handle spacing from navbar */
+.main-wrapper {
+    flex-grow: 1; /* Allow main content to grow and fill remaining space */
+    padding-top: 60px; /* Ensure main content is below navbar */
+    display: flex; /* Flexbox for vertical alignment */
+    flex-direction: column; /* Column direction */
+    align-items: center; /* Center content horizontally */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    width: 100%;
+}
+
+/* Form container */
+.form-container {
+    background-color: #1e1e1e; /* Dark form background */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%; /* Ensure form container is responsive */
+    box-sizing: border-box; /* Include padding in width and height */
+}
+
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffffff; /* White label text color */
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    background-color: #333333; /* Dark input background */
+    color: #ffffff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding in width and height */
+}
+
+.form-group input::placeholder {
+    color: #888888; /* Lighter placeholder text color */
+}
+
+.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff; /* Primary button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    box-sizing: border-box; /* Include padding in width and height */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darken on hover */
+}
+
+.result-container {
+    background-color: #1e1e1e; /* Dark result container background */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%; /* Ensure result container is responsive */
+    box-sizing: border-box; /* Include padding in width and height */
+    margin-bottom: 20px;
+}
+
+.result-container h2 {
+    color: #ffffff; /* White heading text color */
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.result-container p {
+    color: #ffffff; /* White text color */
+    text-align: center;
+    font-size: 18px;
+}
