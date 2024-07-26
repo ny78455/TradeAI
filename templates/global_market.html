@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard</title>
+        <!-- Bootstrap CSS link -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='global_market.css') }}">
+        <!-- Plotly JS library -->
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <style>
+            #logo img {
+                width: 60px;
+                height: auto;
+            }
+        </style>
+        
+        <div id="logo">
+            <a href="/">
+                <img src="static/images/logo-white.png" alt="">
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Master's Strategy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/fa">Financial Advisor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/global_market">Global Market</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/portfolio">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Watchlist</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Helpbot</a>
+                </li>
+            </ul>
+            <div class="user-info d-flex align-items-center">
+                <img src="{{ url_for('static', filename='images/user-avatar.jpg') }}" alt="User Avatar" class="rounded-circle"
+                    style="width: 30px; height: 30px;">
+                <span class="ms-2">Nitin Yadav</span>
+            </div>
+        </div>
+    </nav>
+    
+
+    <header>
+        <div class="main-nav container flex">
+            <div>
+                <div class="title">GLOBAL MARKET</div>
+                <div class="date">Updated on <span id="current-time"></span></div>
+            </div>
+            <div class="search-section flex">
+                <div class="search-bar">
+                    <input id="search-text" type="text" class="news-input" placeholder="e.g. Microsoft">
+                    <button id="search-button" class="search-button">Search</button>
+                </div>
+                <button id="nlp-button" class="nlp-button">Process NLP</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="cards-container container flex" id="cards-container">
+            
+        </div>
+    </main>
+
+    <template id="template-news-card">
+        <div class="card">
+            <div class="card-header">
+                <img src="https://via.placeholder.com/400x200" alt="news-image" id="news-img">
+            </div>
+            <div class="card-content">
+                <h3 id="news-title">This is the Title</h3>
+                <h6 class="news-source" id="news-source">End Gadget 26/08/2023</h6>
+                <p class="news-desc" id="news-desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae saepe quis voluptatum quisquam vitae doloremque facilis molestias quae ratione cumque!</p>
+            </div>
+        </div>
+    </template>
+
+    <footer>
+        <div class="footerlinksContainer">
+            <div class="footerAboutus">
+                <style>
+                    #logo img {
+                        width: 120px;
+                    }
+                </style>
+                
+                <div id="logo">
+                    <a href="/">
+                        <img src="static/images/logo-white.png" alt="">
+                    </a>
+                </div>
+                <p class="darkPara">With minimum commissions and a simple user interface, 
+                 Trade/sync is the most reliable and safe way to trade for 
+                 Cryptocurrency.
+                </p>
+                <div class="footersociallinkContainer">
+                    <img class="sociallink" src="./img/fabook-icon-white.svg" alt="">
+                    <img class="sociallink" src="./img/twitter-icon-white.svg" alt="">
+                    <img class="sociallink" src="./img/inkedin-icon-white.svg" alt="">
+                    <img class="sociallink" src="./img/whatsapp-icon-white.svg" alt="">
+                </div>
+            </div>
+
+            <div class="footerlink">
+                <h1 class="linkTitle">Explore</h1>
+                <a href="#" class="eachLink">About us</a>
+                <a href="#" class="eachLink">FAQ</a>
+                <a href="#" class="eachLink">Blog</a>
+                <a href="#" class="eachLink">Contact</a>
+            </div>
+
+            <div class="footerlink">
+                <h1 class="linkTitle">Service</h1>
+                <a href="#" class="eachLink">Mining</a>
+                <a href="#" class="eachLink">Control Data</a>
+                <a href="#" class="eachLink">Design</a>
+                <a href="#" class="eachLink">Security</a>
+            </div>
+
+            <div class="footerlink">
+                <h1 class="linkTitle">Resource</h1>
+                <a href="#" class="eachLink">Style Guide</a>
+                <a href="#" class="eachLink">Change Log</a>
+                <a href="#" class="eachLink">License</a>
+            </div>
+        </div>
+
+        <div class="footerCopyright">
+             <p>&copy; 2024 design and developed by <a href="#" class="developedBy">TRADE/SYNC</a>.</p>
+        </div>
+    </footer>
+
+    <script>
+        const API_KEY = "3e3872b6ef1c44fd8b14bb86baf1c044";
+        const url = "https://newsapi.org/v2/everything?q=";
+    
+        window.addEventListener("load", () => fetchNews("finance"));
+    
+        function reload() {
+            window.location.reload();
+        }
+    
+        async function fetchNews(query) {
+            const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
+            const data = await res.json();
+            bindData(data.articles);
+        }
+    
+        function bindData(articles) {
+    // Sort articles by publishedAt in descending order (newest first)
+    articles.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+
+    const cardsContainer = document.getElementById("cards-container");
+    const newsCardTemplate = document.getElementById("template-news-card");
+
+    cardsContainer.innerHTML = "";
+
+    articles.forEach((article) => {
+        if (!article.urlToImage) return;
+        const cardClone = newsCardTemplate.content.cloneNode(true);
+        fillDataInCard(cardClone, article);
+        cardsContainer.appendChild(cardClone);
+    });
+}
+    
+        function fillDataInCard(cardClone, article) {
+            const newsImg = cardClone.querySelector("#news-img");
+            const newsTitle = cardClone.querySelector("#news-title");
+            const newsSource = cardClone.querySelector("#news-source");
+            const newsDesc = cardClone.querySelector("#news-desc");
+    
+            newsImg.src = article.urlToImage;
+            newsTitle.innerHTML = article.title;
+            newsDesc.innerHTML = article.description;
+    
+            const date = new Date(article.publishedAt).toLocaleString("en-US", {
+                timeZone: "Asia/Jakarta",
+            });
+    
+            newsSource.innerHTML = `${article.source.name} · ${date}`;
+    
+            cardClone.firstElementChild.addEventListener("click", () => {
+                window.open(article.url, "_blank");
+            });
+        }
+    
+        let curSelectedNav = null;
+        function onNavItemClick(id) {
+            fetchNews(id);
+            const navItem = document.getElementById(id);
+            curSelectedNav?.classList.remove("active");
+            curSelectedNav = navItem;
+            curSelectedNav.classList.add("active");
+        }
+    
+        const searchButton = document.getElementById("search-button");
+        const searchText = document.getElementById("search-text");
+    
+        searchButton.addEventListener("click", () => {
+            const query = searchText.value;
+            if (!query) return;
+            fetchNews(query);
+            curSelectedNav?.classList.remove("active");
+            curSelectedNav = null;
+        });
+    </script>
+    <script>
+        // Function to update current time in UTC
+        function updateCurrentTime() {
+            // Get current date and time in UTC
+            let now = new Date();
+            let year = now.getUTCFullYear();
+            let month = (now.getUTCMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+            let day = now.getUTCDate().toString().padStart(2, '0');
+            let hours = now.getUTCHours().toString().padStart(2, '0');
+            let minutes = now.getUTCMinutes().toString().padStart(2, '0');
+            let seconds = now.getUTCSeconds().toString().padStart(2, '0');
+
+            // Display date and time in desired format
+            document.getElementById('current-time').textContent = `${year}-${month}-${day} ${hours}:${minutes}:${seconds} UTC`;
+        }
+
+        // Update time immediately on page load
+        updateCurrentTime();
+
+        // Update time every second (1000 milliseconds)
+        setInterval(updateCurrentTime, 1000);
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/commonStyle.css">
+    <link rel="stylesheet" href="static/style.css">
+    <script src="https://kit.fontawesome.com/aa7454d09f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <style>
+            #logo img {
+                width: 120px;
+                height: auto;
+            }
+        </style>
+        
+        <div id="logo">
+            <a href="/">
+                <img src="static/images/logo-white.png" alt="">
+            </a>
+        </div>
+        <ul class="nav" id="nav">
+            <ul class="navLogo">
+                <a href="/">
+                     <img src="static/images/logo-white.png" alt="">
+               </a>
+            </ul>
+
+            <li class="nav-link"><a href="/">Home</a></li>
+            <li class="nav-link"><a href="/aboutus">About Us</a></li>
+            <li class="nav-link"><a href="/contact">Contact</a></li>
+            <li class="sociallinkContainer">
+                <img class="sociallink" src="static/img/fabook-icon-white.svg" alt="">
+                <img class="sociallink" src="static/img/twitter-icon-white.svg" alt="">
+                <img class="sociallink" src="static/img/inkedin-icon-white.svg" alt="">
+                <img class="sociallink" src="static/img/whatsapp-icon-white.svg" alt="">
+            </li>
+        </ul>
+        <div id="barContainer">
+            <i id="bar" class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Hero page -->
+    <section class="hero gridSection">
+        <div class="sectionDesc">
+            <h1 class="headline">
+                Most popular way to trade <span class="cryptoText">CRYPTO</span>.
+            </h1>
+            <p class="sub-headline">
+                Empowering Your Trades with Cutting-Edge Dynamic Intelligence!
+            </p>
+            <div class="btnContainer">
+                <a href="/master_strategy" class="btn btn1">
+                    <button class="btn btn1">Join Us</button>
+                </a>                  
+                <button class="btn btn2">play video <i class="fa-solid fa-play"></i></button>
+            </div>
+        </div>
+        <div class="sectionPic bouncepic" id="sectionPic">
+            <img src="static/images/hero-image.png" alt="">
+        </div>
+    </section>
+
+    <!-- Carousel -->
+    <section>
+        <div class="carouselContainer">
+            <div class="eachCarousel eachCarouselBorder">
+                <img src="static/images/bitcoin-icon.png" alt="Bitcoin Icon">
+                <article class="carouselDesc">
+                    <h1 class="carouselTitle">Bitcoin</h1>
+                    <p class="carouselPara">Bitcoin is an innovative payment network</p>
+                    <div class="carouselPrice">
+                        <h3 id="bitcoinPrice">$34,000</h3>
+                        <span class="rect"></span>
+                        <h3 class="carouselDiscount">15%</h3>
+                    </div>
+                    <a id="buyTradeBitcoin" href="#" class="btn carouselBtn">Buy & Trade</a>
+                </article>
+            </div>
+    
+            <div class="eachCarousel">
+                <img src="static/images/ethereum-icon.png" alt="Ethereum Icon">
+                <article class="carouselDesc">
+                    <h1 class="carouselTitle">Ethereum</h1>
+                    <p class="carouselPara">Ethereum is open-source blockchain currency</p>
+                    <div class="carouselPrice">
+                        <h3 id="ethereumPrice">$25,600</h3>
+                        <span class="rect"></span>
+                        <h3 class="carouselDiscount">9%</h3>
+                    </div>
+                    <a id="buyTradeEthereum" href="#" class="btn carouselBtn">Buy & Trade</a>
+                </article>
+            </div>
+    
+            <div class="eachCarousel">
+                <img src="static/images/tether-icon.png" alt="Tether Icon">
+                <article class="carouselDesc">
+                    <h1 class="carouselTitle">Tether</h1>
+                    <p class="carouselPara">Tether is a stable coin cryptocurrency</p>
+                    <div class="carouselPrice">
+                        <h3 id="tetherPrice">$7,000</h3>
+                        <span class="rect"></span>
+                        <h3 class="carouselDiscount">4%</h3>
+                    </div>
+                    <a id="buyTradeTether" href="#" class="btn carouselBtn">Buy & Trade</a>
+                </article>
+            </div>
+    
+            <div class="eachCarousel">
+                <img src="static/images/bitcoin-icon.png" alt="Avalanche Icon">
+                <article class="carouselDesc">
+                    <h1 class="carouselTitle">Avalanche</h1>
+                    <p class="carouselPara">Avalanche is an innovative payment network</p>
+                    <div class="carouselPrice">
+                        <h3 id="avalanchePrice">$34,000</h3>
+                        <span class="rect"></span>
+                        <h3 class="carouselDiscount">15%</h3>
+                    </div>
+                    <a id="buyTradeAvalanche" href="#" class="btn carouselBtn">Buy & Trade</a>
+                </article>
+            </div>
+    
+            <div class="eachCarousel">
+                <img src="static/images/ethereum-icon.png" alt="Solana Icon">
+                <article class="carouselDesc">
+                    <h1 class="carouselTitle">Solana</h1>
+                    <p class="carouselPara">Solana is open-source blockchain currency</p>
+                    <div class="carouselPrice">
+                        <h3 id="solanaPrice">$25,600</h3>
+                        <span class="rect"></span>
+                        <h3 class="carouselDiscount">9%</h3>
+                    </div>
+                    <a id="buyTradeSolana" href="#" class="btn carouselBtn">Buy & Trade</a>
+                </article>
+            </div>
+    
+            <div class="eachCarousel">
+                <img src="static/images/tether-icon.png" alt="Litecoin Icon">
+                <article class="carouselDesc">
+                    <h1 class="carouselTitle">Litecoin</h1>
+                    <p class="carouselPara">Litecoin is a stable coin cryptocurrency</p>
+                    <div class="carouselPrice">
+                        <h3 id="litecoinPrice">$7,000</h3>
+                        <span class="rect"></span>
+                        <h3 class="carouselDiscount">4%</h3>
+                    </div>
+                    <a id="buyTradeLitecoin" href="#" class="btn carouselBtn">Buy & Trade</a>
+                </article>
+            </div>
+        </div>
+        <div class="carouselIndicator">
+            <div class="indicator activeIndicator" onclick="slideCarousel(0)"></div>
+            <div class="indicator" onclick="slideCarousel(1)"></div>
+            <div class="indicator" onclick="slideCarousel(2)"></div>
+            <div class="indicator" onclick="slideCarousel(3)"></div>
+            <div class="indicator" onclick="slideCarousel(4)"></div>
+            <div class="indicator" onclick="slideCarousel(5)"></div>
+        </div>
+    </section>
+    <script>document.addEventListener("DOMContentLoaded", function() {
+        // Function to fetch live prices for all cryptocurrencies
+        function fetchPrices() {
+            fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether,avalanche-2,solana,litecoin&vs_currencies=usd')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('bitcoinPrice').textContent = `$${data.bitcoin.usd.toLocaleString()}`;
+                    document.getElementById('ethereumPrice').textContent = `$${data.ethereum.usd.toLocaleString()}`;
+                    document.getElementById('tetherPrice').textContent = `$${data.tether.usd.toLocaleString()}`;
+                    document.getElementById('avalanchePrice').textContent = `$${data['avalanche-2'].usd.toLocaleString()}`;
+                    document.getElementById('solanaPrice').textContent = `$${data.solana.usd.toLocaleString()}`;
+                    document.getElementById('litecoinPrice').textContent = `$${data.litecoin.usd.toLocaleString()}`;
+                })
+                .catch(error => console.error('Error fetching prices:', error));
+        }
+    
+        // Fetch the prices initially
+        fetchPrices();
+    
+        // Set interval to fetch the prices every minute (60000 ms)
+        setInterval(fetchPrices, 60000);
+    
+        // Set the buy/trade links
+        document.getElementById('buyTradeBitcoin').href = 'https://www.example.com/buy-trade-bitcoin';
+        document.getElementById('buyTradeEthereum').href = 'https://www.example.com/buy-trade-ethereum';
+        document.getElementById('buyTradeTether').href = 'https://www.example.com/buy-trade-tether';
+        document.getElementById('buyTradeAvalanche').href = 'https://www.example.com/buy-trade-avalanche';
+        document.getElementById('buyTradeSolana').href = 'https://www.example.com/buy-trade-solana';
+        document.getElementById('buyTradeLitecoin').href = 'https://www.example.com/buy-trade-litecoin';
+    
+        // Auto slide functionality
+        let currentIndex = 0;
+        const carousels = document.querySelectorAll('.eachCarousel');
+        const indicators = document.querySelectorAll('.indicator');
+    
+        function showSlides(startIndex) {
+            const endIndex = startIndex + 3;
+            carousels.forEach((carousel, i) => {
+                carousel.style.display = (i >= startIndex && i < endIndex) ? 'block' : 'none';
+            });
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('activeIndicator', i === Math.floor(startIndex / 3));
+            });
+        }
+    
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % carousels.length;
+            if (currentIndex + 3 > carousels.length) {
+                currentIndex = 0;
+            }
+            showSlides(currentIndex);
+        }
+    
+        // Show the first set of slides initially
+        showSlides(currentIndex);
+    
+        // Set interval to change slides every 5 seconds (5000 ms)
+        setInterval(nextSlide, 5000);
+    
+        // Add click event to indicators
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentIndex = index * 3;
+                showSlides(currentIndex);
+            });
+        });
+    });
+    </script>
+    
+
+    <!-- Processes -->
+    <section class="gridSection">
+        <div class="sectionDesc processessDesc">
+            <h1 class="sectionHeader">Master's Strategy</h1>
+            <p class="sectionPara">Empowering Your Trading Journey with Cutting-Edge Automated Technology: Precision, Speed, and Reliability.
+            </p>
+            <div class="eachProcesses">
+                <img src="static/images/handshake-icon-white-line.svg" alt="handshake">
+                <div class="eachprocessesPara">
+                    <h1 class="processTitle">Adaptability</h1>
+                    <p>
+                        Introducing first time where dynamic intelligence auto adjust as per market condition which result into "High Reward" at "Low Risk"!
+                    </p>
+                </div>
+            </div>
+            <div class="eachProcesses">
+                <img src="static/images/cart-icon-white-line.svg" alt="handshake">
+                <div class="eachprocessesPara">
+                    <h1 class="processTitle">Credibilty</h1>
+                    <p>
+                        Backed by Proven Success Across Over 300 Cryptocurrencies and a Consistent Win Rate of 70-80%!
+                    </p>
+                </div>
+            </div>
+            <a href="/master_strategy">
+                <button class="btn">Master's Strategy</button>
+            </a>     
+        </div>
+        <div class="sectionPic bouncepic processesPic" id="sectionPic">
+            <img src="static/images/chain-process-img.png" alt="">
+        </div>
+    </section>
+
+    <!-- Markets -->
+    <section class="gridSection">
+        <div class="sectionDesc marketDesc">
+            <h1 class="sectionHeader">Markets at finger</h1>
+            <p class="sectionPara">All Markets at one place!
+            </p>
+            <div class="eachMarket">
+                <img src="static/images/buy-icon-color.svg" alt="handshake">
+                <div>
+                    <h1 class="marketTitle">Analysis</h1>
+                    <p class="darkPara">
+                        Integrate essential articles, news, and financial information into a single, comprehensive platform.
+                    </p>
+                </div>
+            </div>
+            <div class="eachMarket">
+                <img src="static/images/trading-icon-color.svg" alt="handshake">
+                <div>
+                    <h1 class="marketTitle">Insights</h1>
+                    <p class="darkPara">
+                        Access professional trading insights from across the internet in one place.
+                    </p>
+                </div>
+            </div>
+            <div class="eachMarket">
+                <img src="static/images/support-icon-color.svg" alt="handshake">
+                <div>
+                    <h1 class="marketTitle">Live trading zone</h1>
+                    <p class="darkPara">
+                        Receive live signals for various markets, consolidated in one location.
+                    </p>
+                </div>
+            </div>
+            <div class="eachMarket">
+                <img src="static/images/online-icon-color.svg" alt="handshake">
+                <div>
+                    <h1 class="marketTitle">NLP</h1>
+                    <p class="darkPara">
+                        Utilize Natural Language Processing to generate in-depth, insightful reports.
+                    </p>
+                </div>
+            </div>
+            <a href="/world_stocks">
+                <button class="btn">Global Market</button>
+            </a>              
+        </div>
+        <div class="sectionPic marketspicSection" id="sectionPic">
+           <h1 class="marketspicHeader">CRYPTOCURRENCY</h1>
+            <div class="marketsPicContainer">
+                <div class="marketPic marketPic1">
+                    <img src="static/images/persent-icon-white.svg" alt="">
+                    <article class="marketTitle">Hot Sale</article>
+                </div>
+    
+                <div class="marketPic marketPic2">
+                    <img src="static/images/bitcoin-icon-white.svg" alt="">
+                    <article class="marketTitle">Bit coin</article>
+                </div>
+    
+                <div class="marketPic marketPic3">
+                    <img src="static/images/ethereum-white-icon.svg" alt="">
+                    <article class="marketTitle">ETHEREUM</article>
+                </div>
+    
+                <div class="marketPic marketPic4">
+                    <img src="static/images/handshake-icon-white.svg" alt="">
+                    <article class="marketTitle">CONNECTING</article>
+                </div>
+            </div>
+            </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section class="gridSection">
+        <div class="sectionDesc dashboardDesc">
+            <h1 class="sectionHeader">Trade asset in seconds</h1>
+            <p class="sectionPara">
+                But with prouple, you can mine asset from your own phone! 
+                You no longer have to worry about costly transactions.
+            </p>
+            <a href="/portfolio">
+                <button class="btn">Portfolio</button>
+            </a>
+              
+        </div>
+
+        <div class="sectionPic dashboardPic">
+            <img src="static/images/dashboard-dark.jpg" alt="">
+        </div>
+
+    </section>
+
+    <section class="gridSection">
+        <div class="sectionDesc processessDesc">
+            <h1 class="sectionHeader">Trading Lobby</h1>
+            <p class="sectionPara">Introducing Trading Lobby: Empowering Your Trades with Human Insight and AI Precision!
+            </p>
+            <div class="eachProcesses">
+                <img src="static/images/handshake-icon-white-line.svg" alt="handshake">
+                <div class="eachprocessesPara">
+                    <h1 class="processTitle">AI Trading Lobby</h1>
+                    <p>
+                        Precision Trading Powered by Advanced Algorithms.
+                    </p>
+                </div>
+            </div>
+            <div class="eachProcesses">
+                <img src="static/images/cart-icon-white-line.svg" alt="handshake">
+                <div class="eachprocessesPara">
+                    <h1 class="processTitle">Mannual Trading Lobby</h1>
+                    <p>
+                        Harnessing Your Expertise for Strategic Success.
+                    </p>
+                </div>
+            </div>
+            <a href="/chart">
+                <button class="btn">Trading Lobby</button>
+            </a>    
+        </div>
+        <div class="sectionPic bouncepic processesPic" id="sectionPic">
+            <img src="static/images/pikaso_texttoimage_-png-of-Trading-using-AI.jpeg" alt="">
+        </div>
+    </section>
+
+    <section class="gridSection">
+        <div class="sectionDesc dashboardDesc">
+            <h1 class="sectionHeader">Financial Advisor</h1>
+            <p class="sectionPara">
+                Empower your financial future with our AI-driven advisor.
+                Seamlessly manage your assets with precision and confidence.
+            </p>
+            <a href="/fa">
+                <button class="btn">Financial Advisor</button>
+            </a>              
+        </div>
+
+        <div class="sectionPic dashboardPic">
+            <img src="static/images/de473548-42a2-490f-bfa1-7af4c5339a5e-removebg.png" alt="">
+        </div>
+
+    </section>
+
+    <div class="fundSection">
+        <div class="sectionDesc">
+            <h1 class="sectionHeader">Control your funds</h1>
+            <p class="sectionPara">
+                Our mining pool offers some of the most competitive contracts in the market.
+            </p>
+            <div class="fundsContainer">
+                <div class="fund">
+                    <img src="static/images/cryptocurrency-white-icon.svg" alt="cryptocurrency">
+                    <h1 class="fundType">Support All Currency</h1>
+                    <p class="darkPara">
+                        Accept and process payments from all types of currencies.
+                    </p>
+                </div>
+
+                <div class="fund">
+                    <img src="static/images/blockchain-white-icon.svg" alt="cryptocurrency">
+                    <h1 class="fundType">Block Chain System</h1>
+                    <p class="darkPara">
+                        How it Works, Benefits and its Deployment in Financial
+                    </p>
+                </div>
+
+                <div class="fund">
+                    <img src="static/images/cryptocurrency-sell-white-icon.svg" alt="cryptocurrency">
+                    <h1 class="fundType">Fund Selling</h1>
+                    <p class="darkPara">
+                        How to Profit in the Crypto Markets through Investing
+                    </p>
+                </div>
+
+                <div class="fund">
+                    <img src="static/images/cryptocurrency-card-white-icon.svg" alt="cryptocurrency">
+                    <h1 class="fundType">Crypto Card</h1>
+                    <p class="darkPara">
+                        Crypto Cards and Why Cryptocurrency are the Future
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="gridSection">
+        <div class="sectionDesc newsletterDesc">
+            <h1 class="sectionHeader">Subscribe news!</h1>
+            <p class="sectionPara">
+                This is where crypto news websites come in handy and stay up-to-date this sphere.
+            </p>
+            <form action="#" class="newsletter">
+                <input type="email" name="" id="newsletter" placeholder="enter your email">
+                <button type="submit" class="btn primaryBtn">Subscribe</button>
+            </form>
+        </div>
+        <div class="sectionPic bouncepic newsletterPic">
+            <img src="static/images/newsletter.png" alt="">
+        </div>
+    </section>
+
+    <footer>
+        <div class="joinSection">
+            <div class="joinDesc">
+                <h1 class="sectionHeader">Join with us</h1>
+                <p class="sectionPara">
+                    Create your account to get Benefits of above features
+                </p>
+            </div>
+            <button class="btn primaryBtn">JOIN NOW</button>
+        </div>
+
+        <div class="footerlinksContainer">
+            <div class="footerAboutus">
+                <style>
+                    #logo img {
+                        width: 120px;
+                    }
+                </style>
+                
+                <div id="logo">
+                    <a href="/">
+                        <img src="static/images/logo-white.png" alt="">
+                    </a>
+                </div>
+                <p class="darkPara">With minimum commissions and a simple user interface, 
+                 Trade/sync is the most reliable and safe way to trade for 
+                 Cryptocurrency.
+                </p>
+                <div class="footersociallinkContainer">
+                    <img class="sociallink" src="./img/fabook-icon-white.svg" alt="">
+                    <img class="sociallink" src="./img/twitter-icon-white.svg" alt="">
+                    <img class="sociallink" src="./img/inkedin-icon-white.svg" alt="">
+                    <img class="sociallink" src="./img/whatsapp-icon-white.svg" alt="">
+                </div>
+            </div>
+
+            <div class="footerlink">
+                <h1 class="linkTitle">Explore</h1>
+                <a href="#" class="eachLink">About us</a>
+                <a href="#" class="eachLink">FAQ</a>
+                <a href="#" class="eachLink">Blog</a>
+                <a href="#" class="eachLink">Contact</a>
+            </div>
+
+            <div class="footerlink">
+                <h1 class="linkTitle">Service</h1>
+                <a href="#" class="eachLink">Mining</a>
+                <a href="#" class="eachLink">Control Data</a>
+                <a href="#" class="eachLink">Design</a>
+                <a href="#" class="eachLink">Security</a>
+            </div>
+
+            <div class="footerlink">
+                <h1 class="linkTitle">Resource</h1>
+                <a href="#" class="eachLink">Style Guide</a>
+                <a href="#" class="eachLink">Change Log</a>
+                <a href="#" class="eachLink">License</a>
+            </div>
+        </div>
+
+        <div class="footerCopyright">
+             <p>&copy; 2024 design and developed by <a href="#" class="developedBy">TRADE/SYNC</a>.</p>
+        </div>
+    </footer>
+    
+
+</body>
+</html>

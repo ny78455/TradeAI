@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candlestick Chart with Signals</title>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <style>
+        #container {
+            position: relative;
+            width: 100%;
+        }
+        #chart {
+            width: 100%;
+            height: 685px;
+            background: linear-gradient(135deg, #2b2b2b, #121212);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        #title {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 1;
+        }
+        #buttonsContainer {
+            margin-top: 10px;
+            text-align: center;
+        }
+        #buttonsContainer button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #buttonsContainer button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="chart"></div>
+        <div id="title">MASTER SIGNALS</div>
+    </div>
+    <div id="buttonsContainer"></div>
+
+    <script>
+        let chart;
+        let candlestickSeries;
+        const signalColors = ['cyan', 'purple', 'lightyellow', 'yellow', 'green', 'orange'];
+        const signalsDict = {};
+
+        async function fetchChartData() {
+            try {
+                const response = await fetch('/get_data');
+                const rawData = await response.text(); // Get raw text for debugging
+                console.log('Raw fetched data:', rawData); // Debugging: log the raw fetched data
+
+                const jsonData = JSON.parse(rawData);
+                console.log('Parsed data:', jsonData); // Debugging: log the parsed data
+
+                if (!Array.isArray(jsonData)) {
+                    throw new Error('Fetched data is not an array');
+                }
+
+                return jsonData.map(d => ({
+                    datetime: Math.floor(new Date(d.Datetime).getTime() / 1000),
+                    open: parseFloat(d.Open),
+                    high: parseFloat(d.High),
+                    low: parseFloat(d.Low),
+                    close: parseFloat(d.Close),
+                    volume: parseFloat(d.Volume),
+                    adjClose: parseFloat(d['Adj Close']),
+                    prediction: parseInt(d.Prediction),
+                    pointpos: parseFloat(d.pointpos)
+                }));
+            } catch (error) {
+                console.error('Error fetching or parsing data:', error);
+                return [];
+            }
+        }
+
+        async function plotCandlestickChart() {
+            const data = await fetchChartData();
+            chart = LightweightCharts.createChart(document.getElementById('chart'), {
+                width: document.body.clientWidth,
+                height: 685,
+                layout: {
+                    background: { color: '#121212' },
+                    textColor: '#ffffff',
+                },
+                grid: {
+                    vertLines: {
+                        color: '#333333',
+                    },
+                    horzLines: {
+                        color: '#333333',
+                    },
+                },
+                crosshair: {
+                    mode: LightweightCharts.CrosshairMode.Normal,
+                },
+                rightPriceScale: {
+                    borderColor: '#555555',
+                },
+                timeScale: {
+                    borderColor: '#555555',
+                    timeVisible: true,
+                    secondsVisible: false,
+                },
+            });
+
+            candlestickSeries = chart.addCandlestickSeries();
+
+            const candlestickData = data.map(d => ({
+                time: d.datetime,
+                open: d.open,
+                high: d.high,
+                low: d.low,
+                close: d.close
+            }));
+
+            candlestickSeries.setData(candlestickData);
+
+            data.forEach(d => {
+                if (!signalsDict[d.datetime]) {
+                    signalsDict[d.datetime] = d;
+                } else if (d.prediction > signalsDict[d.datetime].prediction) {
+                    signalsDict[d.datetime] = d;
+                }
+            });
+
+            Object.values(signalsDict).forEach(d => {
+                if (d.prediction) {
+                    const lineSeries = chart.addLineSeries({
+                        color: signalColors[d.prediction],
+                        lineWidth: 5,
+                    });
+                    lineSeries.setData([{ time: d.datetime, value: d.pointpos }]);
+                }
+            });
+
+            const intervals = ['1D', '1W', '1M', '1Y'];
+            const buttonsContainer = document.getElementById('buttonsContainer');
+
+            intervals.forEach(interval => {
+                const button = document.createElement('button');
+                button.innerText = interval;
+                button.addEventListener('click', () => setChartInterval(interval));
+                buttonsContainer.appendChild(button);
+            });
+
+            window.addEventListener('resize', () => {
+                chart.resize(document.body.clientWidth, 685);
+            });
+
+            function setChartInterval(interval) {
+                let from;
+                const to = Math.floor(Date.now() / 1000);
+                switch (interval) {
+                    case '1D':
+                        from = to - 24 * 60 * 60;
+                        break;
+                    case '1W':
+                        from = to - 7 * 24 * 60 * 60;
+                        break;
+                    case '1M':
+                        from = to - 30 * 24 * 60 * 60;
+                        break;
+                    case '1Y':
+                        from = to - 365 * 24 * 60 * 60;
+                        break;
+                }
+                chart.timeScale().setVisibleRange({ from, to });
+            }
+        }
+
+        async function refreshChart() {
+            const data = await fetchChartData();
+            if (data.length === 0) return; // Do nothing if data fetching or parsing failed
+            const latestData = data[data.length - 1];
+
+            const newCandlestick = {
+                time: latestData.datetime,
+                open: latestData.open,
+                high: latestData.high,
+                low: latestData.low,
+                close: latestData.close
+            };
+
+            candlestickSeries.update(newCandlestick);
+
+            if (!signalsDict[latestData.datetime] || latestData.prediction > signalsDict[latestData.datetime].prediction) {
+                signalsDict[latestData.datetime] = latestData;
+
+                const lineSeries = chart.addLineSeries({
+                    color: signalColors[latestData.prediction],
+                    lineWidth: 5,
+                });
+                lineSeries.setData([{ time: latestData.datetime, value: latestData.pointpos }]);
+            }
+        }
+
+        plotCandlestickChart();
+
+        setInterval(refreshChart, 5000); // Refresh the chart every 5 seconds
+    </script>
+</body>
+</html>

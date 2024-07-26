@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard</title>
+        <!-- Bootstrap CSS link -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='fa.css') }}">
+        <!-- Plotly JS library -->
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    </head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <style>
+            #logo img {
+                width: 60px;
+                height: auto;
+            }
+        </style>
+        
+        <div id="logo">
+            <a href="/">
+                <img src="static/images/logo-white.png" alt="">
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Master's Strategy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/fa">Financial Advisor</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Global Market
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/us_stocks">US Stocks</a>
+                        <a class="dropdown-item" href="/world_stocks">World Stocks</a>
+                        <a class="dropdown-item" href="/etfs">ETFs</a>
+                        <a class="dropdown-item" href="/crypto">Crypto</a>
+                        <a class="dropdown-item" href="/forex">Forex</a>
+                        <a class="dropdown-item" href="/futures">Futures</a>
+                        <a class="dropdown-item" href="/bonds">Bonds</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/portfolio">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/watchlist">Watchlist</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Helpbot</a>
+                </li>
+            </ul>
+            <div class="user-info d-flex align-items-center">
+                <img src="{{ url_for('static', filename='images/user-avatar.jpg') }}" alt="User Avatar" class="rounded-circle"
+                    style="width: 30px; height: 30px;">
+                <span class="ms-2">Nitin Yadav</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header Section -->
+        <header>
+            <div class="main-nav">
+                <div class="title">FINANCIAL ADVISOR</div>
+                <div class="date">Updated on <span id="current-time"></span></div>
+            </div>
+        </header>
+
+        <!-- Advisor Section -->
+        <div class="advisor-container d-flex">
+            <div class="advisor" id="advisor">
+                <!-- Placeholder for Blender animated character or other content -->
+                <!-- Adjust size and content as needed -->
+            </div>
+            <div class="financial-advisors-section">
+                <h2>Financial Advisors</h2>
+                <div class="advisors-list">
+                    <div class="advisor-item">
+                        <img src="{{ url_for('static', filename='images/advisor 1.jpg') }}" alt="Advisor Avatar" class="advisor-avatar">
+                        <div class="advisor-details">
+                            <span class="advisor-name">  Jane Smith</span><span class="stars">★★★★★</span>
+                            <button class="contact-button">Contact</button>
+                        </div>
+                    </div>
+                    <div class="advisor-item">
+                        <img src="{{ url_for('static', filename='images/advisor 2.jpg') }}" alt="Advisor Avatar" class="advisor-avatar">
+                        <div class="advisor-details">
+                            <span class="advisor-name">  Bob Johnson</span><span class="stars">★★★</span>
+                            <button class="contact-button">Contact</button>
+                        </div>
+                    </div>
+                    <div class="advisor-item">
+                        <img src="{{ url_for('static', filename='images/advisor 3.jpg') }}" alt="Advisor Avatar" class="advisor-avatar">
+                        <div class="advisor-details">
+                            <span class="advisor-name">  Michael Steve</span><span class="stars">★★★</span>
+                            <button class="contact-button">Contact</button>
+                        </div>
+                    </div>
+                    <div class="advisor-item">
+                        <img src="{{ url_for('static', filename='images/advisor 4.jpg') }}" alt="Advisor Avatar" class="advisor-avatar">
+                        <div class="advisor-details">
+                            <span class="advisor-name">  Daisy Jonathan</span><span class="stars">★★</span>
+                            <button class="contact-button">Contact</button>
+                        </div>
+                    </div>
+                    <div class="advisor-item">
+                        <img src="{{ url_for('static', filename='images/advisor 5.jpg') }}" alt="Advisor Avatar" class="advisor-avatar">
+                        <div class="advisor-details">
+                            <span class="advisor-name">  Mitchel Jones</span><span class="stars">★★</span>
+                            <button class="contact-button">Contact</button>
+                        </div>
+                    </div>
+                    <div class="advisor-item">
+                        <img src="{{ url_for('static', filename='images/advisor 6.jpg') }}" alt="Advisor Avatar" class="advisor-avatar">
+                        <div class="advisor-details">
+                            <span class="advisor-name">  Katherine Wood</span><span class="stars">★</span>
+                            <button class="contact-button">Contact</button>
+                        </div>
+                    </div>
+                    <!-- Add more advisors as needed -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Advisors Section -->
+
+        <!-- Answer Section -->
+        <div class="answer-container" id="answer-container">
+            <h2>Answer:</h2>
+            <p id="answer" class="answer">Thinking...</p>
+        </div>
+
+        <!-- Prompt Section -->
+        <div class="prompt-container">
+            <input type="text" id="question" name="question" class="prompt-input" aria-label="Enter your question"
+                   placeholder="Ask me anything...">
+            <button type="button" class="submit-button" onclick="submitQuestion()">Submit</button>
+        </div>
+    </div>
+
+    <footer>
+
+        <div class="footerlinksContainer">
+            <div class="footerAboutus">
+                <style>
+                    #logo img {
+                        width: 120px;
+                    }
+                </style>
+                
+                <div id="logo">
+                    <a href="/">
+                        <img src="static/images/logo-white.png" alt="">
+                    </a>
+                </div>
+                <p class="darkPara">With minimum commissions and a simple user interface, 
+                 Trade/sync is the most reliable and safe way to trade for 
+                 Cryptocurrency.
+                </p>
+                <div class="footersociallinkContainer">
+                    <img class="sociallink" src="./img/fabook-icon-white.svg" alt="">
+                    <img class="sociallink" src="./img/twitter-icon-white.svg" alt="">
+                    <img class="sociallink" src="./img/inkedin-icon-white.svg" alt="">
+                    <img class="sociallink" src="./img/whatsapp-icon-white.svg" alt="">
+                </div>
+            </div>
+
+            <div class="footerlink">
+                <h1 class="linkTitle">Explore</h1>
+                <a href="#" class="eachLink">About us</a>
+                <a href="#" class="eachLink">FAQ</a>
+                <a href="#" class="eachLink">Blog</a>
+                <a href="#" class="eachLink">Contact</a>
+            </div>
+
+            <div class="footerlink">
+                <h1 class="linkTitle">Service</h1>
+                <a href="#" class="eachLink">Mining</a>
+                <a href="#" class="eachLink">Control Data</a>
+                <a href="#" class="eachLink">Design</a>
+                <a href="#" class="eachLink">Security</a>
+            </div>
+
+            <div class="footerlink">
+                <h1 class="linkTitle">Resource</h1>
+                <a href="#" class="eachLink">Style Guide</a>
+                <a href="#" class="eachLink">Change Log</a>
+                <a href="#" class="eachLink">License</a>
+            </div>
+        </div>
+
+        <div class="footerCopyright">
+             <p>&copy; 2024 design and developed by <a href="#" class="developedBy">TRADE/SYNC</a>.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Dynamic Functionality -->
+    <script>
+        // Function to handle question submission
+        async function submitQuestion() {
+            const question = document.getElementById('question').value;
+            const answerElement = document.getElementById('answer');
+            const advisorElement = document.getElementById('advisor');
+
+            answerElement.innerText = "Thinking...";
+            advisorElement.classList.add('animate');
+
+            try {
+                // Replace '/ask' with your backend endpoint URL for handling questions
+                const response = await fetch('/ask', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ question })
+                });
+
+                const result = await response.json();
+                advisorElement.classList.remove('animate');
+                answerElement.innerText = result.answer;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                answerElement.innerText = 'An error occurred. Please try again later.';
+            }
+        }
+
+        // Function to update current time in UTC
+        function updateCurrentTime() {
+            // Get current date and time in UTC
+            const now = new Date();
+            const year = now.getUTCFullYear();
+            const month = (now.getUTCMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+            const day = now.getUTCDate().toString().padStart(2, '0');
+            const hours = now.getUTCHours().toString().padStart(2, '0');
+            const minutes = now.getUTCMinutes().toString().padStart(2, '0');
+            const seconds = now.getUTCSeconds().toString().padStart(2, '0');
+
+            // Display date and time in desired format
+            document.getElementById('current-time').textContent = `${year}-${month}-${day} ${hours}:${minutes}:${seconds} UTC`;
+        }
+
+        // Update time immediately on page load
+        updateCurrentTime();
+
+        // Update time every second (1000 milliseconds)
+        setInterval(updateCurrentTime, 1000);
+    </script>
+</body>
+</html>

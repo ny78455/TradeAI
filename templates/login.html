@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_login.css') }}">
+</head>
+<body>
+    <div class="logo-container">
+        <span class="logo">TRADE.AI</span>
+    </div>
+    <div class="login-container">
+        <h2>Welcome back.</h2>
+        <div class="login-buttons">
+            <a href="{{ url_for('login_google') }}">
+            <button><img src="{{ url_for('static', filename='images/google-logo.png') }}" alt="Google Logo">Sign in with Google</button>
+            </a>
+            <button><img src="{{ url_for('static', filename='images/facebook-logo.png') }}" alt="Facebook Logo">Sign in with Facebook</button>
+            <button><img src="{{ url_for('static', filename='images/apple-logo.png') }}" alt="Apple Logo">Sign in with Apple</button>
+            <button><img src="{{ url_for('static', filename='images/twitter-logo.png') }}" alt="Twitter Logo">Sign in with x</button>
+            <button><img src="{{ url_for('static', filename='images/email-logo.png') }}" alt="Email Logo">Sign in with Email</button>
+        </div>
+        <p>No account? <a href="#">Create one</a></p>
+    </div>
+</body>
+</html>

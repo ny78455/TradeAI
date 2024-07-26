@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Plotly JS library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <style>
+            #logo img {
+                width: 60px;
+                height: auto;
+            }
+        </style>
+        
+        <div id="logo">
+            <a href="/">
+                <img src="static/images/logo-white.png" alt="">
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Master's Strategy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/fa">Financial Advisor</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Global Market
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/us_stocks">US Stocks</a>
+                        <a class="dropdown-item" href="/world_stocks">World Stocks</a>
+                        <a class="dropdown-item" href="/etfs">ETFs</a>
+                        <a class="dropdown-item" href="/crypto">Crypto</a>
+                        <a class="dropdown-item" href="/forex">Forex</a>
+                        <a class="dropdown-item" href="/futures">Futures</a>
+                        <a class="dropdown-item" href="/bonds">Bonds</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/portfolio">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/watchlist">Watchlist</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/chart">Chart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Helpbot</a>
+                </li>
+            </ul>
+            <div class="user-info d-flex align-items-center">
+                <img src="{{ url_for('static', filename='images/user-avatar.jpg') }}" alt="User Avatar" class="rounded-circle" style="width: 30px; height: 30px;">
+                <span class="ms-2">Nitin Yadav</span>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content Container -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Main Content Column -->
+            <div class="col-12">
+                <div class="main-content">
+                    <div class="dashboard">
+                        <div class="chart-container mb-4">
+                            <div class="chart-header mb-3 d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="title">MASTER'S STRATEGY</div>
+                                    <div class="date">Updated on <span id="current-time"></span></div>
+                                </div>
+                                <button type="button" class="btn btn-secondary btn-sm" id="backtestReportBtn">Backtest Report</button>
+                            </div>
+                            <form id="stock-form">
+                                <div class="tracking">
+                                    <div class="track-item mb-3 d-flex align-items-center">
+                                        <select class="form-control form-control-sm me-2" id="ticker" name="ticker" required>
+                                            <option value="AVAXUSDT" selected>AVAXUSDT</option>
+                                            <!-- Add more options as needed -->
+                                        </select>
+                                        <input type="text" class="form-control form-control-sm" id="tickerInput" name="tickerInput" placeholder="Enter custom ticker">
+                                    </div>
+                                    <div class="track-item mb-3 d-flex align-items-center">
+                                        <select class="form-control form-control-sm me-2" id="period" name="period" required>
+                                            <option value="10 day" selected>10 day</option>
+                                            <!-- Add more options as needed -->
+                                        </select>
+                                        <input type="text" class="form-control form-control-sm" id="periodInput" name="periodInput" placeholder="Enter custom period">
+                                    </div>
+                                    <div class="track-item mb-3 d-flex align-items-center">
+                                        <select class="form-control form-control-sm me-2" id="interval" name="interval" required>
+                                            <option value="1MINUTE" selected>1MINUTE</option>
+                                            <!-- Add more options as needed -->
+                                        </select>
+                                        <input type="text" class="form-control form-control-sm" id="intervalInput" name="intervalInput" placeholder="Enter custom interval">
+                                        <button type="submit" class="btn btn-primary btn-sm" id="submitBtn">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            <div class="dashboard-container">
+                                <div id="graph-container" class="graph-container mt-4" style="width: 100%; height: 700px;">
+                                    <!-- Graph will be dynamically inserted here -->
+                                </div>
+                                <div class="update-plot-section">
+                                    <div class="dropdown mt-4">
+                                        <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="updatePlotDropdown" data-toggle="collapse" data-target="#updatePlotForm" aria-expanded="false" aria-controls="updatePlotForm">
+                                            Automate Buy/Sell
+                                        </button>
+                                        <div class="collapse" id="updatePlotForm">
+                                            <form id="update-plot-form">
+                                                <div class="update-plot">
+                                                    <div class="mf-item mb-3">
+                                                        <label for="mf" class="form-label">Hold Period (Candles):</label>
+                                                        <input type="number" step="0.01" class="form-control" id="MF" name="mf" placeholder="Enter MF">
+                                                    </div>
+                                                    <div class="date-item mb-3">
+                                                        <label for="x" class="form-label">Asset Ticker:</label>
+                                                        <input type="datetime-local" class="form-control" id="x" name="x" placeholder="Enter Start Date">
+                                                    </div>
+                                                    <div class="date-item mb-3">
+                                                        <label for="y" class="form-label">Price (in $):</label>
+                                                        <input type="datetime-local" class="form-control" id="y" name="y" placeholder="Enter End Date">
+                                                    </div>
+                                                    <button type="button" class="btn btn-primary btn-sm" id="comparePlotBtn">Automate</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="toggle-container mt-4 d-flex align-items-center">
+                                        <button type="button" class="btn btn-info btn-sm" id="toggleTaskBtn">Toggle Task</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footerlinksContainer">
+            <div class="footerAboutus">
+                <style>
+                    #logo img {
+                        width: 120px;
+                    }
+                </style>
+                
+                <div id="logo">
+                    <a href="/">
+                        <img src="static/images/logo-white.png" alt="">
+                    </a>
+                </div>
+                <p class="darkPara">With minimum commissions and a simple user interface, 
+                 Trade/sync is the most reliable and safe way to trade for 
+                 Cryptocurrency.
+                </p>
+                <div class="footersociallinkContainer">
+                    <img class="sociallink" src="./img/fabook-icon-white.svg" alt="">
+                    <img class="sociallink" src="./img/twitter-icon-white.svg" alt="">
+                    <img class="sociallink" src="./img/inkedin-icon-white.svg" alt="">
+                    <img class="sociallink" src="./img/whatsapp-icon-white.svg" alt="">
+                </div>
+            </div>
+
+            <div class="footerlink">
+                <h1 class="linkTitle">Explore</h1>
+                <a href="#" class="eachLink">About us</a>
+                <a href="#" class="eachLink">FAQ</a>
+                <a href="#" class="eachLink">Blog</a>
+                <a href="#" class="eachLink">Contact</a>
+            </div>
+
+            <div class="footerlink">
+                <h1 class="linkTitle">Service</h1>
+                <a href="#" class="eachLink">Mining</a>
+                <a href="#" class="eachLink">Control Data</a>
+                <a href="#" class="eachLink">Design</a>
+                <a href="#" class="eachLink">Security</a>
+            </div>
+
+            <div class="footerlink">
+                <h1 class="linkTitle">Resource</h1>
+                <a href="#" class="eachLink">Style Guide</a>
+                <a href="#" class="eachLink">Change Log</a>
+                <a href="#" class="eachLink">License</a>
+            </div>
+        </div>
+
+        <div class="footerCopyright">
+             <p>&copy; 2024 design and developed by <a href="#" class="developedBy">TRADE/SYNC</a>.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript code -->
+    <script>
+        // Function to update or display graph in an iframe
+        function displayGraph(graphUrl) {
+            const existingGraph = document.getElementById('generated-graph');
+            if (existingGraph) {
+                existingGraph.src = graphUrl;
+            } else {
+                const graphContainer = document.getElementById('graph-container');
+                const iframe = document.createElement('iframe');
+                iframe.id = 'generated-graph';
+                iframe.src = graphUrl;
+                iframe.style.width = '100%';
+                iframe.style.height = '700px'; // Adjust height as needed
+                graphContainer.appendChild(iframe);
+            }
+        }
+    
+        // Function to fetch and update the graph data
+        async function fetchGraphData() {
+            try {
+                const formData = {
+                    ticker: document.getElementById('tickerInput').value || document.getElementById('ticker').value,
+                    period: document.getElementById('periodInput').value || document.getElementById('period').value,
+                    interval: document.getElementById('intervalInput').value || document.getElementById('interval').value
+                };
+    
+                const response = await fetch('/process', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+    
+                const data = await response.json();
+                displayGraph(data.graphUrl); // Display or update the graph
+            } catch (error) {
+                console.error('Error fetching graph data:', error);
+            }
+        }
+    
+        // Function to toggle the refresh task on backend
+        async function toggleRefresh() {
+            try {
+                const response = await fetch('/toggle_refresh', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Toggle request failed');
+                }
+    
+                const data = await response.json();
+                const refreshTaskEnabled = data.refresh_task_enabled;
+    
+                const toggleSwitch = document.getElementById('toggleTaskSwitch');
+                const toggleLabel = document.getElementById('toggleTaskLabel');
+                const toggleBtn = document.getElementById('toggleTaskBtn');
+    
+                toggleSwitch.checked = refreshTaskEnabled;
+                toggleLabel.innerText = `Refresh Task: ${refreshTaskEnabled ? 'ON' : 'OFF'}`;
+                toggleBtn.innerText = refreshTaskEnabled ? 'Stop Task' : 'Start Task';
+            } catch (error) {
+                console.error('Error toggling refresh:', error);
+                alert('Error toggling refresh task');
+            }
+        }
+    
+        // Add event listener to form submission
+        document.getElementById('stock-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            await fetchGraphData();
+        });
+    
+        // Add event listener for comparePlotBtn
+        document.getElementById('comparePlotBtn').addEventListener('click', async function() {
+            const MF = document.getElementById('MF').value;
+            const startDate = document.getElementById('x').value;
+            const endDate = document.getElementById('y').value;
+    
+            const formData = {
+                MF: MF,
+                x: startDate || null,  // Use null if no value is provided
+                y: endDate || null     // Use null if no value is provided
+            };
+    
+            try {
+                const response = await fetch('/update_plot', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+    
+                const data = await response.json();
+                displayGraph(data.graphUrl); // Display or update the graph
+            } catch (error) {
+                console.error('Error updating plot:', error);
+            }
+        });
+    
+        // Add event listener for toggling the refresh task
+        document.getElementById('toggleTaskBtn').addEventListener('click', toggleRefresh);
+    
+        // Fetch the initial plot data on page load
+        window.addEventListener('load', async function() {
+            try {
+                const response = await fetch('/initial_plot_data');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch initial plot data');
+                }
+    
+                const data = await response.json();
+                if (data.graphUrl) {
+                    displayGraph(data.graphUrl); // Display initial graph
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
+    
+        
+    <script>
+        // Function to update current time in UTC
+        function updateCurrentTime() {
+            // Get current date and time in UTC
+            let now = new Date();
+            let year = now.getUTCFullYear();
+            let month = (now.getUTCMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+            let day = now.getUTCDate().toString().padStart(2, '0');
+            let hours = now.getUTCHours().toString().padStart(2, '0');
+            let minutes = now.getUTCMinutes().toString().padStart(2, '0');
+            let seconds = now.getUTCSeconds().toString().padStart(2, '0');
+
+            // Display date and time in desired format
+            document.getElementById('current-time').textContent = `${year}-${month}-${day} ${hours}:${minutes}:${seconds} UTC`;
+        }
+
+        // Update time immediately on page load
+        updateCurrentTime();
+
+        // Update time every second (1000 milliseconds)
+        setInterval(updateCurrentTime, 1000);
+    </script>
+    <script>
+        // Function to handle the backtest report download
+        function downloadBacktestReport() {
+            const link = document.createElement('a');
+            link.href = '/download_backtest_report'; // Adjust this path based on your route
+            link.download = 'backtest_report.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    
+        // Add event listener for the backtest report button
+        document.getElementById('backtestReportBtn').addEventListener('click', downloadBacktestReport);
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

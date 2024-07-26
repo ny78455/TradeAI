@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard</title>
+        <!-- Bootstrap CSS link -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles_portfolio.css') }}">
+        <!-- Plotly JS library -->
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <style>
+            #logo img {
+                width: 120px;
+                height: auto;
+            }
+        </style>
+        
+        <div id="logo">
+            <a href="/">
+                <img src="static/images/logo-white.png" alt="">
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Master's Strategy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/fa">Financial Advisor</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Global Market
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/us_stocks">US Stocks</a>
+                        <a class="dropdown-item" href="/world_stocks">World Stocks</a>
+                        <a class="dropdown-item" href="/etfs">ETFs</a>
+                        <a class="dropdown-item" href="/crypto">Crypto</a>
+                        <a class="dropdown-item" href="/forex">Forex</a>
+                        <a class="dropdown-item" href="/futures">Futures</a>
+                        <a class="dropdown-item" href="/bonds">Bonds</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/portfolio">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/watchlist">Watchlist</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Helpbot</a>
+                </li>
+            </ul>
+            <div class="user-info d-flex align-items-center">
+                <img src="{{ url_for('static', filename='images/user-avatar.jpg') }}" alt="User Avatar" class="rounded-circle"
+                    style="width: 30px; height: 30px;">
+                <span class="ms-2">Nitin Yadav</span>
+            </div>
+        </div>
+    </nav>
+    <div class="main-nav container flex">
+        <div class="left-section">
+            <div class="title">PORTFOLIO DASHBOARD</div>
+            <div class="date">Updated on <span id="current-time"></span></div>
+        </div>
+        <div class="dropdown">
+            <button>Trading Mode</button>
+            <div class="dropdown-content">
+                <a href="#" id="live-trading">Live Trading</a>
+                <a href="#" id="paper-trading">Paper Trading</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        CASH
+                    </div>
+                    <div class="card-body">
+                        <p>$<span id="cash"></span></p>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        EQUITY
+                    </div>
+                    <div class="card-body">
+                        <p>$<span id="equity"></span></p>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        TRADING AUTOMATION
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="symbol_automation">Symbol:</label>
+                            <input type="text" id="symbol_automation" name="symbol" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount_automation">Amount in Dollars:</label>
+                            <input type="number" id="amount_automation" name="amount" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="holdPeriod">Hold Period (candles):</label>
+                            <input type="number" id="holdPeriod" name="holdPeriod" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <button id="startButton" class="btn btn-primary">Start Automating</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        LIVE CHART
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <div class="tradingview-widget-container">
+                                <div id="tradingview_93f77"></div>
+                                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                                <script type="text/javascript">
+                                    new TradingView.widget({
+                                        "width": "100%",
+                                        "height": "100%",
+                                        "symbol": "BINANCE:BTCUSDT",
+                                        "interval": "D",
+                                        "timezone": "Etc/UTC",
+                                        "theme": "dark",
+                                        "style": "1",
+                                        "locale": "en",
+                                        "toolbar_bg": "#f1f3f6",
+                                        "enable_publishing": false,
+                                        "allow_symbol_change": true,
+                                        "container_id": "tradingview_93f77"
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        BUY/SELL
+                    </div>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" id="symbol" class="form-control" placeholder="Symbol">
+                            </div>
+                            <div class="col">
+                                <input type="number" id="amount" class="form-control" placeholder="Amount">
+                            </div>
+                            <div class="col">
+                                <select id="order_type" class="form-control">
+                                    <option value="market">Market</option>
+                                    <option value="limit">Limit</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <input type="text" id="estimated_qty" class="form-control" placeholder="Estimated Quantity" readonly>
+                            </div>
+                            <div class="col">
+                                <button id="buy" class="btn btn-success btn-block">Buy</button>
+                            </div>
+                            <div class="col">
+                                <button id="sell" class="btn btn-danger btn-block">Sell</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        HOLDINGS
+                    </div>
+                    <div class="card-body" style="max-height: 300px; overflow-y: auto;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Symbol</th>
+                                    <th>Quantity</th>
+                                    <th>Current Price</th>
+                                    <th>Market Value</th>
+                                    <th>Profit/Loss</th>
+                                </tr>
+                            </thead>
+                            <tbody id="holdings">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        TRANSACTIONS
+                    </div>
+                    <div class="card-body" style="max-height: 300px; overflow-y: auto;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Symbol</th>
+                                    <th>Quantity</th>
+                                    <th>Average Cost</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactions">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function updateEstimatedQty() {
+                const symbol = $('#symbol').val();
+                const amount = $('#amount').val();
+                if (symbol && amount) {
+                    console.log('Fetching price for symbol:', symbol);
+                    $.ajax({
+                        url: `/api/price/${symbol}`,
+                        method: 'GET',
+                        success: function(data) {
+                            console.log('Price data received:', data);
+                            if (data.price) {
+                                const marketPrice = data.price;
+                                const estimatedQty = (amount / marketPrice).toFixed(2);
+                                $('#estimated_qty').val(estimatedQty);
+                            } else {
+                                $('#estimated_qty').val('N/A');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error fetching price:', error);
+                            $('#estimated_qty').val('Error');
+                        }
+                    });
+                }
+            }
+
+            $('#symbol, #amount').on('input', updateEstimatedQty);
+
+            $.ajax({
+                url: '/api/portfolio',
+                method: 'GET',
+                success: function(data) {
+                    $('#cash').text(data.cash.toFixed(2));
+                    $('#equity').text(data.equity.toFixed(2));
+                    data.holdings.forEach(function(holding) {
+                        $('#holdings').append(`
+                            <tr>
+                                <td>${holding.symbol}</td>
+                                <td>${holding.quantity}</td>
+                                <td>${holding.current_price.toFixed(2)}</td>
+                                <td>${holding.market_value.toFixed(2)}</td>
+                                <td style="color: ${holding.profit_and_loss >= 0 ? 'green' : 'red'};">
+                                ${holding.profit_and_loss.toFixed(2)}
+                                </td>
+                            </tr>
+                        `);
+                    });
+                    data.transactions.forEach(function(transaction) {
+                        $('#transactions').append(`
+                            <tr>
+                                <td>${transaction.date}</td>
+                                <td>${transaction.type}</td>
+                                <td>${transaction.symbol}</td>
+                                <td>${transaction.quantity}</td>
+                                <td>${transaction.average_cost.toFixed(2)}</td>
+                                <td>${transaction.amount.toFixed(2)}</td>
+                                <td>${transaction.status}</td>
+                            </tr>
+                        `);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching portfolio data:', error);
+                    alert('Error fetching portfolio data.');
+                }
+            });
+
+            $('#buy').click(function() {
+                const symbol = $('#symbol').val();
+                const amount = $('#amount').val();
+                const order_type = $('#order_type').val();
+
+                console.log(`Placing buy order: Symbol=${symbol}, Amount=${amount}, Order Type=${order_type}`);
+
+                $.ajax({
+                    url: `/api/price/${symbol}`,
+                    method: 'GET',
+                    success: function(data) {
+                        console.log(`Fetched price for ${symbol}: ${data.price}`);
+                        const marketPrice = data.price;
+                        const qty = (amount / marketPrice).toFixed(2);
+
+                        console.log(`Calculated quantity: ${qty}`);
+
+                        $.ajax({
+                            url: '/api/buy',
+                            method: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify({ symbol, amount, order_type }),
+                            success: function(response) {
+                                console.log('Buy order placed successfully:', response);
+                                alert('Buy order placed successfully!');
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Error placing buy order:', xhr.responseText);
+                                alert('Error placing buy order: ' + xhr.responseText);
+                            }
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching price:', xhr.responseText);
+                        alert('Error fetching price: ' + xhr.responseText);
+                    }
+                });
+            });
+
+            $('#sell').click(function() {
+                const symbol = $('#symbol').val();
+                const amount = $('#amount').val();
+                const order_type = $('#order_type').val();
+
+                console.log(`Placing sell order: Symbol=${symbol}, Amount=${amount}, Order Type=${order_type}`);
+
+                $.ajax({
+                    url: `/api/price/${symbol}`,
+                    method: 'GET',
+                    success: function(data) {
+                        console.log(`Fetched price for ${symbol}: ${data.price}`);
+                        const marketPrice = data.price;
+                        const qty = (amount / marketPrice).toFixed(2);
+
+                        console.log(`Calculated quantity: ${qty}`);
+
+                        $.ajax({
+                            url: '/api/sell',
+                            method: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify({ symbol, amount, order_type }),
+                            success: function(response) {
+                                console.log('Sell order placed successfully:', response);
+                                alert('Sell order placed successfully!');
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Error placing sell order:', xhr.responseText);
+                                alert('Error placing sell order: ' + xhr.responseText);
+                            }
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching price:', xhr.responseText);
+                        alert('Error fetching price: ' + xhr.responseText);
+                    }
+                });
+            });
+
+            $('#startButton').click(function() {
+                const symbol = $('#symbol_automation').val();
+                const amount = $('#amount_automation').val();
+                const holdPeriod = $('#holdPeriod').val();
+                
+                if (symbol && amount && holdPeriod) {
+                    fetch('/start-automation', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            symbol: symbol,
+                            amount: amount,
+                            holdPeriod: holdPeriod
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert('Automation started: ' + JSON.stringify(data));
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred. Please try again.');
+                    });
+                } else {
+                    alert('Please fill in all fields.');
+                }
+            });
+        });
+    </script>
+    <script>
+        // Function to update current time in UTC
+        function updateCurrentTime() {
+            // Get current date and time in UTC
+            let now = new Date();
+            let year = now.getUTCFullYear();
+            let month = (now.getUTCMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+            let day = now.getUTCDate().toString().padStart(2, '0');
+            let hours = now.getUTCHours().toString().padStart(2, '0');
+            let minutes = now.getUTCMinutes().toString().padStart(2, '0');
+            let seconds = now.getUTCSeconds().toString().padStart(2, '0');
+
+            // Display date and time in desired format
+            document.getElementById('current-time').textContent = `${year}-${month}-${day} ${hours}:${minutes}:${seconds} UTC`;
+        }
+
+        // Update time immediately on page load
+        updateCurrentTime();
+
+        // Update time every second (1000 milliseconds)
+        setInterval(updateCurrentTime, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+        <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Custom CSS -->
+        <!-- Plotly JS library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        /* Add any custom styles here */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            background-color: #131722; /* Dark background to match TradingView theme */
+        }
+        #tradingview_container {
+            width: 100%;
+            height: 100%;
+            max-width: 1200px; /* Maximum width for the chart */
+            max-height: 700px; /* Maximum height for the chart */
+        }
+
+        .navbar {
+    background-color: #121212 !important; /* Ensure navbar background is dark */
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff !important;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-left: 20px;  /* Add some padding for better click area */
+}
+
+.nav-link:hover {
+    background-color: #333333; /* Darken on hover */
+}
+
+.dropdown-menu {
+    background-color: #333333;
+    border: none;
+    border-radius: 10px;
+}
+.dropdown-menu .dropdown-item {
+    color: #ddd;
+    padding: 10px 20px;
+}
+.dropdown-menu .dropdown-item:hover {
+    background-color: #444444;
+    color: #fff;
+}
+
+.navbar .user-info {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.navbar .user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <style>
+            #logo img {
+                width: 120px;
+                height: auto;
+            }
+        </style>
+        
+        <div id="logo">
+            <a href="/">
+                <img src="static/images/logo-white.png" alt="">
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Master's Strategy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/fa">Financial Advisor</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Global Market
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/us_stocks">US Stocks</a>
+                        <a class="dropdown-item" href="/world_stocks">World Stocks</a>
+                        <a class="dropdown-item" href="/etfs">ETFs</a>
+                        <a class="dropdown-item" href="/crypto">Crypto</a>
+                        <a class="dropdown-item" href="/forex">Forex</a>
+                        <a class="dropdown-item" href="/futures">Futures</a>
+                        <a class="dropdown-item" href="/bonds">Bonds</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/portfolio">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/watchlist">Watchlist</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/chart">Chart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Helpbot</a>
+                </li>
+            </ul>
+            <div class="user-info d-flex align-items-center">
+                <img src="{{ url_for('static', filename='images/user-avatar.jpg') }}" alt="User Avatar" class="rounded-circle"
+                    style="width: 30px; height: 30px;">
+                <span class="ms-2">Nitin Yadav</span>
+            </div>
+        </div>
+    </nav>
+    <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container" style="height:100%;width:100%">
+    <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+    {
+    "autosize": true,
+    "symbol": "NASDAQ:AAPL",
+    "timezone": "Etc/UTC",
+    "theme": "dark",
+    "style": "1",
+    "locale": "en",
+    "withdateranges": true,
+    "range": "1D",
+    "hide_side_toolbar": false,
+    "allow_symbol_change": true,
+    "save_image": false,
+    "details": true,
+    "hotlist": true,
+    "calendar": false,
+    "support_host": "https://www.tradingview.com"
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+</body>
+</html>
