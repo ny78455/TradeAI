@@ -90,8 +90,8 @@ trade/sync presenting advanced algorithmic trading platform provides micro and n
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/madastra.git
-cd madastra
+git clone https://github.com/ny78455/TradeAI
+cd TradeAI
 ```
 
 ### Create a Virtual Environment
@@ -115,6 +115,7 @@ Create a `.env` file in the root directory and add your configuration variables:
 APCA_API_KEY_ID=your_aplaca_api_key_paper
 APCA_API_SECRET_KEY=your_aplaca_secret_key_paper
 yt_data_api_key=your_youtube_data_api_key
+gemini_api_key = your_gemini_api_key
 ```
 
 ### Run the Application
