@@ -1,16 +1,16 @@
-# Mad Astra: Advanced Algorithmic Trading Platform
+# Trade/sync : craft your trading future with Gen AI
 
 ## Team Details
-**Team Name:** Mad Astra  
+**Web Name:** trade/sync  
 **Team Leader:** Nitin Yadav
 
-## Problem Statement: Entrepreneurship
+## Problem Statement: Gemini API Developer Competition app
 
-Micro and nano entrepreneurs face significant challenges, including limited financial resources, inadequate business management skills, and insufficient market visibility. Additionally, the digital divide and lack of access to modern technologies impede their growth and competitiveness.
+Leveraging the use of gemini AI in fintech and stock market
 
 ## Solution Overview
 
-Mad Astra presents an advanced algorithmic trading platform designed to empower micro and nano entrepreneurs by integrating traditional strategies (CHOCH Pattern, Long Signal, EMA, RSI) with an innovative Compound Moving Average (CMA) approach. It utilizes advanced machine learning models, including ANN and LSTM, to identify complex trading patterns, achieving an accuracy rate of 98-99%.
+trade/sync presents an advanced algorithmic trading platform designed to empower micro and nano entrepreneurs by integrating traditional strategies (CHOCH Pattern, Long Signal, EMA, RSI) with an innovative Compound Moving Average (CMA) approach. It utilizes advanced machine learning models, including ANN and LSTM, to identify complex trading patterns, achieving an win rate of over 80%.
 
 ### Key Features
 
@@ -67,24 +67,18 @@ Mad Astra presents an advanced algorithmic trading platform designed to empower 
 - **NLP-powered Chatbot:** For real-time insights and recommendations
 - **Backtesting and Performance Analysis Tools**
 
-### Estimated Implementation Cost
+### Google tools used
 
-- **Domain and Hosting:** $110 - $630/year
-- **Website Design and Development:** $12,000 - $35,000
-- **Security Measures:** $1,400 - $4,500/year
-- **Trading Platform Integration:** $8,000 - $28,000
-- **User Account Management:** $5,000 - $13,000
-- **Additional Features:** $11,000 - $25,000
-- **Maintenance and Updates:** $3,000 - $8,000/year
-- **Marketing and SEO:** $7,000 - $27,000/year
-
-**Total Estimated Cost:**
-- **Initial Setup:** $35,510 - $98,500
-- **Annual Recurring Costs:** $6,510 - $21,000
+-**Gemini API:** Call code with function calling
+-**Gemini API:** Search and answer with embeddings
+-**Google Firebase** Authentication
+-**Google Youtube Data API** Live trading videos
+-**Google Analytics API** Analysis and insights
+-**Google Monitoring API** To get insights of site visits
 
 ## Conclusion
 
-Mad Astra’s advanced algorithmic trading platform provides micro and nano entrepreneurs with the tools and support needed to overcome barriers, improve financial management, and increase market visibility. With high predictive accuracy, comprehensive strategy integration, and robust support, Mad Astra empowers entrepreneurs to thrive in a competitive market.
+trade/sync presenting advanced algorithmic trading platform provides micro and nano entrepreneurs with the tools and support needed to overcome barriers, improve financial management, and increase market visibility. With high predictive accuracy, comprehensive strategy integration, and robust support, trade/sync empowers entrepreneurs to thrive in a competitive market.
 
 ## Installation
 
